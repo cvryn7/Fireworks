@@ -7,7 +7,7 @@
  */
 function Particle(x, y) {
     this.position = createVector(x, y);
-    this.velocity = createVector(0, 0);
+    this.velocity = createVector(0, random(-8, -12));
     this.acceleration = createVector(0, 0);
 
     //force accumulation
