@@ -1,7 +1,18 @@
 var fireworks = [];
 var gravity;
 var stars = [];
+var song;
+var muteImg;
+var soundImg;
+var img;
+
+function preload() {
+    song = loadSound('edith.mp3');
+}
 function setup() {
+    muteImg = loadImage("mute.png");
+    soundImg = loadImage("sound.png");
+    img = soundImg;
     createCanvas(800, 500);
     gravity = createVector(0, 0.2);
     colorMode(HSB);
@@ -14,6 +25,7 @@ function setup() {
         stars[i] = createVector(random(0, width), random(0, height));
     }
     background(0)
+    song.loop();
 }
 
 function draw() {
@@ -36,5 +48,17 @@ function draw() {
             if (fireworks[i].done()) {
                 fireworks.splice(i, 1);
             }
+    }
+    image(img, 5, 5, 30, 30);
+}
+
+function mousePressed() {
+    if ( song.isPlaying() ) { // .isPlaying() returns a boolean
+        song.pause();
+        img = muteImg;
+
+    } else {
+        song.loop();
+        img = soundImg;
     }
 }
